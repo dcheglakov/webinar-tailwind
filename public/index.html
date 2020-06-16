@@ -10,7 +10,8 @@
     <header class="bg-gray-200 p-4 flex justify-between">
       <a href="/">Logo</a>
       <div
-        class="fixed top-0 p-4 right-0 h-screen bg-gray-400 md:relative md:h-auto md:bg-transparent md:p-0 w-1/2 md:w-auto flex justify-between items-start hidden md:block"
+        id="nav"
+        class="fixed top-0 p-4 right-0 h-screen bg-gray-400 md:relative md:h-auto md:bg-transparent md:p-0 w-1/2 md:w-auto flex justify-between items-start transform translate-x-full md:translate-x-0 z-10 transition-transform duration-500 ease-in-out"
       >
         <ul class="md:space-x-4 md:flex">
           <li><a href="/">Home</a></li>
@@ -18,7 +19,7 @@
           <li><a href="">Blog</a></li>
           <li><a href="">Contacts</a></li>
         </ul>
-        <button type="button" class="md:hidden">
+        <button type="button" id="close-button" class="md:hidden">
           <svg
             width="24"
             height="24"
@@ -33,7 +34,7 @@
           </svg>
         </button>
       </div>
-      <button type="button" class="md:hidden">
+      <button type="button" id="nav-button" class="md:hidden">
         <svg
           width="24"
           height="24"
@@ -62,6 +63,7 @@
         <div class="relative">
           <button
             type="button"
+            id="dropdown-button"
             class="flex space-x-1 bg-blue-600 text-white rounded px-4 py-2"
           >
             <span>Dropdown List</span>
@@ -70,7 +72,8 @@
               height="24"
               viewBox="0 0 24 24"
               fill="none"
-              class="transform rotate-180 transition-transform duration-500 ease-in-out"
+              id="dropdown-icon"
+              class="transform transition-transform duration-500 ease-in-out"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -80,7 +83,8 @@
             </svg>
           </button>
           <div
-            class="absolute bg-white border border-gray-300 rounded shadow-md hover:shadow-lg transition-all duration-500 ease-in-out transform p-2 mt-2 hidden"
+            id="dropdown"
+            class="absolute bg-white border border-gray-300 rounded shadow-md hover:shadow-lg transition-all duration-500 ease-in-out transform p-2 mt-2 hidden z-20"
           >
             <div class="relative">
               <input
@@ -112,7 +116,7 @@
             </ul>
           </div>
         </div>
-        <p>
+        <p class="bg-gray-100 rounded p-2 my-2">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, quam
           alias perspiciatis molestias itaque odit rem reprehenderit mollitia
           minima quis, nemo molestiae! Deleniti praesentium atque error dolorem
@@ -281,5 +285,25 @@
       </section>
     </main>
   </body>
-  <script></script>
+  <script>
+    function toogleNav() {
+      const nav = document.querySelector(`#nav`);
+      nav.classList.toggle(`translate-x-full`);
+      console.log("clicked");
+    }
+    function toogleDropdown() {
+      const dropdown = document.querySelector(`#dropdown`);
+      const dropdownIcon = document.querySelector(`#dropdown-icon`);
+      dropdown.classList.toggle(`hidden`);
+      dropdownIcon.classList.toggle(`rotate-180`);
+      console.log("clicked");
+    }
+    const navButton = document.querySelector(`#nav-button`);
+    const closeButton = document.querySelector(`#close-button`);
+    const dropDownButton = document.querySelector(`#dropdown-button`);
+    navButton.addEventListener("click", toogleNav, false);
+    closeButton.addEventListener("click", toogleNav, false);
+    dropDownButton.addEventListener("click", toogleDropdown, false);
+    console.log(navButton);
+  </script>
 </html>
